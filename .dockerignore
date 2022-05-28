@@ -1,0 +1,9 @@
+**/.code
+**/.vscode
+**/.idea
+**/__pycache__*
+**/*.pyc
+**/Pipfile.lock
+**/Pipfile
+**/.git
+**/README.md
