@@ -1,0 +1,6 @@
+**/.code
+**/.vscode
+**/.idea
+**/__pycache__*
+**/*.pyc
+**/Pipfile.lock
