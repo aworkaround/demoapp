@@ -31,7 +31,7 @@ This application can be used for demonstration or testing.
 
 1. Install docker on your system.
 
-2. Run `docker run -p 8080:80 kamalk8s/demo-app:latest`
+2. Run `docker run -p 8080:80 kamalk8s/flask-demo:latest`
 
 3. Now you can launch this application on your browser at `http://localhost:8080`.
 
