@@ -1,13 +1,20 @@
 FROM python:3.11-rc-alpine
+USER root
 
+WORKDIR /app
 RUN adduser appuser -D
+RUN chown appuser:appuser /app
+RUN chmod 700 /app
 USER appuser
 
-COPY ./requirements.txt /home/appuser/app/
-WORKDIR /home/appuser/app/
-RUN PATH="$PATH:/home/appuser/.local/bin"
-RUN pip3 install -r ./requirements.txt
+COPY ./requirements.txt /app/
 
-COPY . /home/appuser/app/
+ENV PATH="$PATH:/home/appuser/.local/bin"
 
-ENTRYPOINT [ "python3", "./run.py" ]
+RUN pip --disable-pip-version-check \
+        --no-python-version-warning \
+        install -r ./requirements.txt --log /app/logs/pip-requirements.log
+
+COPY . ./
+
+ENTRYPOINT ["gunicorn", "run:app", "-b:80", "--workers=2" ]
